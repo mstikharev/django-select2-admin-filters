@@ -11,10 +11,10 @@ def admin_list_filter(cl, spec):
     except:
         tpl = get_template(spec.template)
     return tpl.render({
-        'title': spec.title,
+        'title': getattr(spec, 'title', ''),
         'choices': list(spec.choices(cl)),
         'spec': spec,
-        'class': spec.css_class,
-        'attrs': spec.attrs,
+        'class': getattr(spec, 'css_class', ''),
+        'attrs': getattr(spec, 'attrs', {}),
         'multiple': getattr(spec, 'multiple', False),
     })
